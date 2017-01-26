@@ -1,0 +1,217 @@
+package controlador;
+
+import persistencia.GestorPersistencia;
+import model.Biblioteca;
+import vista.BibliotecaForm;
+import vista.BibliotecaLlista;
+import vista.MenuBibliotecaVista;
+import java.awt.event.*;
+import javax.swing.*;
+import principal.BibliotecaExcepcio;
+
+
+public class ControladorBiblioteca implements ActionListener {
+
+    private MenuBibliotecaVista menuBibliotecaVista;
+    private BibliotecaForm bibliotecaForm = null;
+    private BibliotecaLlista bibliotecaLlista = null;
+    private Integer opcioSeleccionada = 0;
+
+    public ControladorBiblioteca() {
+       /*
+        S'inicialitza la propietat menuPrincipalVista (això mostrarà el menú biblioteca)
+        Es crida a afegirListenersMenu
+        */ 
+    }
+
+    //El controlador com a listener dels controls de les finestres que gestionen les biblioteques
+    //S'AFEGEIX EL CONTROLADOR COM A LISTENER DELS BOTONS DEL MENU
+    private void afegirListenersMenu() {
+        /*
+        A cada botó del menú biblioteca, s'afegeix aquest mateix objecte (ControladorBiblioteca) com a listener
+        */
+    }
+
+    //S'AFEGEIX EL CONTROLADOR COM A LISTENER DELS BOTONS DEL FORMULARI
+    private void afegirListenersForm() {
+        /*
+        A cada botó del formulari biblioteca, s'afegeix aquest mateix objecte (ControladorBiblioteca) com a listener
+        */ 
+    }
+
+    //S'AFEGEIX EL CONTROLADOR COM A LISTENER DEL BOTO DE LA LLISTA
+    private void afegirListenersLlista() {
+        /*
+        Al botó de sortir de la llista biblioteca, s'afegeix aquest mateix objecte (ControladorBiblioteca) com a listener
+        */
+    }
+
+
+    public void actionPerformed(ActionEvent e) {
+        //Accions per al menú
+        /*
+        Nota:
+            Com ControladorBiblioteca és listener del menú biblioteca, del formulari i de la llista, llavors en aquest mètode
+            actionPerformed heu de controlar si l'usuari ha premut algun botó de qualsevol dels esmentats frames.
+            En el cas del formulari i de la llista, com provenen del menú (els llança el menú biblioteca), heu de verificar
+            primer que els objectes bibliotecaForm o bibliotecaLlista no són nulls, per tal de saber si podeu comparar-los amb
+            algun botó d'aquests frames
+        Accions per al menú:
+            S'ha de cridar a bifurcaOpcio segons l'opció premuda. Penseu que l'opció es correspon amb
+            la posició que el botó ocupa a l'array de botons de menuPrincipalVista
+            També, heu d'actualitzar la propietat opcioSeleccionada (amb l'opció que ha premut l'usuari)
+        Accions per al formulari Biblioteca:
+            ---- DESAR ----
+            Si el botó premut per l'usuari és el botó de desar del formulari biblioteca, llavors:
+                Si l'opció seleccionada (al menú biblioteca) és 1 (alta), llavors:
+                    Es validen les dades (validarBiblioteca()):
+                       Si no són correctes, ja s'haurà mostrat un missatge al mateix validarBiblioteca()
+                       Si són correctes:
+                         Es crea un nou objecte Biblioteca amb les dades del formulari
+                         S'afegeix la Biblioteca creada al vector bibliotecas del ControladorPrincipal
+                         Es desahabilita el codi del formulari
+                         S'assigna aquesta biblioteca, com a bibliotecaActual (del ControladorPrincipal) i es canvia la propietat
+                         opcioSeleccionada a 2
+                Si l'opció seleccionada (al menú biblioteca) és 3 (modificació), llavors:
+                    Nota: no es validen dades amb aquesta opció (per simplificar)
+                    Es modifica l'objecte biblioteca amb les dades del formulari (penseu que en aquests moments, la biblioteca és la biblioteca actual)
+            ---- SORTIR ----
+            Si el botó premut per l'usuari és el botó de sortir del formulari biblioteca, llavors:
+                Heu de tornar al menú biblioteca i amagar el formulari
+        Accions per a la llista de biblioteca:
+            ---- SORTIR ----
+            Si el botó premut per l'usuari és el botó de sortir de la llista de biblioteca, llavors:
+                Heu de tornar al menú biblioteca i amagar la llista
+        */ 
+
+    }
+
+    private void bifurcaOpcio(Integer opcio) {
+        switch (opcio) {
+            case 0: //sortir
+                ControladorPrincipal.getMenuPrincipalVista().getFrame().setVisible(true);
+                break;
+            case 1: // alta
+                if (ControladorPrincipal.getComptaBiblioteques() < ControladorPrincipal.getMAXBIBLIOTEQUES()) {
+                    bibliotecaForm = new BibliotecaForm();
+                    afegirListenersForm();
+                } else {
+                    menuBibliotecaVista.getFrame().setVisible(true);
+                    JOptionPane.showMessageDialog(menuBibliotecaVista.getFrame(), "Màxim nombre de biblioteques assolit.");
+                }
+                break;
+            case 2: //registrar
+                menuBibliotecaVista.getFrame().setVisible(true);
+                if (ControladorPrincipal.getBiblioteques()[0] != null) {
+                    seleccionarBiblioteca();
+                } else {
+                    JOptionPane.showMessageDialog(menuBibliotecaVista.getFrame(), "Abans s'ha de crear al menys una biblioteca");
+                }
+                break;
+            case 3: //modificar
+                if (ControladorPrincipal.getBiblioteques()[0] != null) {
+                    seleccionarBiblioteca();
+                    bibliotecaForm = new BibliotecaForm(ControladorPrincipal.getBibliotecaActual().getCodi(), ControladorPrincipal.getBibliotecaActual().getNom(), ControladorPrincipal.getBibliotecaActual().getAdreca());
+                    bibliotecaForm.getCodi().setEnabled(false);
+                    afegirListenersForm();
+                } else {
+                    menuBibliotecaVista.getFrame().setVisible(true);
+                    JOptionPane.showMessageDialog(menuBibliotecaVista.getFrame(), "Abans s'ha de crear al menys una biblioteca");
+                }
+                break;
+            case 4: // llista
+                if (ControladorPrincipal.getBiblioteques()[0] != null) {
+                    bibliotecaLlista = new BibliotecaLlista();
+                    afegirListenersLlista();
+                } else {
+                    menuBibliotecaVista.getFrame().setVisible(true);
+                    JOptionPane.showMessageDialog(menuBibliotecaVista.getFrame(), "Abans s'ha de crear al menys una biblioteca");
+                }
+                break;
+            case 5: //carregar
+            /*
+            Es mostra un dialog (JOptionPane.showOptionDialog) amb un botó per carregar els documents XML
+            Un cop seleccionat el botó, amb un altre diàleg (JOptionPane.showInputDialog), es demana el codi de la biblioteca a carregar 
+            (recordeu que el nom del fitxer és el codi de la biblioteca+l'extensió)
+            Un cop l'usuari ha entrat el codi i ha premut OK:
+                Es crea un objecte biblioteca(novaBiblioteca) mitjançant el mètode carregarBiblioteca del gestor de persistència
+                Es comprova mitjançant el mètode comprovarBiblioteques si el codi de la novaBiblioteca ja existeix en el vector de biblioteques.
+                Si existeix:
+                    es mostra un diàleg notificant a l'usuari si vol substituir la biblioteca del vector per la que es carregarà des del fitxer (JOptionPane.showOptionDialog)
+                    Si l'usuari cancela, no es fa res
+                    Si l'usuari accepta, llavors s'afegeix la nova biblioteca al vector biblioteques en la mateixa posició on s'havia trobat(recordeu que el mètode
+                    comprovarBiblioteques, retorna la posició on es troba la biblioteca.
+                Si no existeix,
+                    S'afegeix la nova biblioteca al final del vector de biblioteques.
+                    Es mostra un missatge confirmant que la biblioteca s'ha afegit(JOptionPane.showMessageDialog)
+            Si es produeix alguna excepció al carregar el fitxer, en la captura s'ha de mostrar el missatge corresponent de la classe BibliotecaExcepcio
+            mitjançant JOptionPane.showMessageDialog
+            */
+                break;
+            case 6: //desar
+                /*
+                Es comprova si s'ha registrar la biblioteca, és a dir, si la biblioteca és l'actual. Si no ho és mostrarà un missatge indicat que abans s'ha de registrar (JOptionPane.showMessageDialog)
+                Si la biblioteca està registrada, 
+                    Es mostra un diàleg (JOptionPane.showOptionDialog) amb un botó, que representa al mètode de carrega de documents XML
+                    (atribut  METODEPERSISTENCIA de ControladorPrincipal)
+                    Un cop escollit el mètode, es desa la biblioteca cridant a desarBiblioteca del gestor de persistència
+                Si es produeix alguna excepció al desar el fitxer, en la captura s'ha de mostrar el missatge corresponent de la classe BibliotecaExcepcio
+                mitjançant JOptionPane.showMessageDialog
+                */
+                break;
+        }
+    }
+
+    private void seleccionarBiblioteca() {
+        String[] nomBiblioteca = new String[ControladorPrincipal.getComptaBiblioteques()];
+        Integer i = 0;
+        for (Biblioteca biblioteca : ControladorPrincipal.getBiblioteques()) {
+            if (biblioteca != null) {
+                nomBiblioteca[i] = biblioteca.getNom();
+            }
+            i++;
+        }
+        int messageType = JOptionPane.QUESTION_MESSAGE;
+        int code = JOptionPane.showOptionDialog(null, "Selecciona una biblioteca", "Selecció d'una biblioteca", 0, messageType, null, nomBiblioteca, "A");
+        if (code != JOptionPane.CLOSED_OPTION) {
+            ControladorPrincipal.setBibliotecaActual(ControladorPrincipal.getBiblioteques()[code]);
+        }
+    }
+
+    private Integer comprovarBiblioteca(Integer codi) {
+        Integer index = -1;
+        Integer i = 0;
+        for (Biblioteca biblioteca : ControladorPrincipal.getBiblioteques()) {
+            if (biblioteca != null) {
+                if (biblioteca.getCodi().equals(codi)) {
+                    index = i;
+                    break;
+                }
+            }
+            i++;
+        }
+        return index;
+    }
+
+    private Boolean validarBiblioteca() {
+        Boolean retorna = true;
+        try {
+            Integer codi = Integer.parseInt(bibliotecaForm.getCodi().getText());
+            Integer index = comprovarBiblioteca(codi);
+            if (index >= 0) {
+                retorna = false;
+                JOptionPane.showMessageDialog(menuBibliotecaVista.getFrame(), "El codi ja existeix");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(menuBibliotecaVista.getFrame(), "El codi ha de ser numèric");
+            retorna = false;
+        }
+        if (bibliotecaForm.getNom().getText().equals("") || bibliotecaForm.getAdreca().getText().equals("")) {
+            JOptionPane.showMessageDialog(menuBibliotecaVista.getFrame(), "S'han d'introduir el nom i l'adreça");
+            retorna = false;
+        }
+
+        return retorna;
+    }
+
+}

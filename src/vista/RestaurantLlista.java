@@ -1,0 +1,55 @@
+package vista;
+
+import javax.swing.*;
+
+public class RestaurantLlista {
+
+    private JFrame frame;
+    private Integer amplada = 600;
+    private Integer alcada = 200;
+    
+    private JTable taulaRestaurant;
+
+    private JButton bSortir;   
+    
+/*
+  Heu d'inicialitzar els atributs d'aquesta classe fent el següent (no afegiu cap listener a cap control):
+            
+    - Heu d'inicialitzar l'objecte JFrame amb títol "Llistat de biblioteques" i layout Grid d'una columna
+    - Heu d'inicialitzar l'objecte Jtable amb un nou objecte de RestaurantTaula
+    - Heu d'inicialitzar l'objecte JButton amb nom "Sortir".
+    - Heu d'afegir-ho tot a l'atribut frame
+    - Heu de fer visible el frame amb l'amplada i alçada que proposen els atributs alcada i amplada
+    - Heu de fer que la finestra es tanqui quan l'usuari ho fa amb el control "X" de la finestra
+       
+    */
+    public RestaurantLlista() {
+      
+    }
+
+
+    public JFrame getFrame() {
+        return frame;
+    }
+
+    public void setFrame(JFrame frame) {
+        this.frame = frame;
+    }
+
+    public JTable getTaulaRestaurant() {
+        return taulaRestaurant;
+    }
+
+    public void setTaulaRestaurant(JTable pTaulaRestaurant) {
+        taulaRestaurant = pTaulaRestaurant;
+    }    
+    
+    public JButton getSortir() {
+        return bSortir;
+    }
+
+    public void setSortir(JButton bSortir) {
+        this.bSortir = bSortir;
+    }
+
+}
