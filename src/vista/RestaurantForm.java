@@ -2,7 +2,7 @@ package vista;
 
 import javax.swing.*;
 
-public class RestaurantForm {
+public class RestaurantForm extends JFrame{
 
     private JFrame frame;
     private Integer amplada = 300;
@@ -32,6 +32,10 @@ public class RestaurantForm {
     */
     public RestaurantForm() {
     
+        JPanel FormulariRestaurant = new JPanel();
+        FormulariRestaurant.add(frame);
+
+
     }
     
     public RestaurantForm(Integer codi, String nom, String adreca){

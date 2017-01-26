@@ -1,5 +1,6 @@
 package vista;
 
+import java.awt.GridLayout;
 import javax.swing.*;
 
 public class MenuRestaurantVista extends JFrame{
@@ -29,6 +30,9 @@ public class MenuRestaurantVista extends JFrame{
         
     */
     public MenuRestaurantVista() {
+        
+        frame = new JFrame("Menú RESTAURANT");
+        frame.setLayout(new GridLayout(0,1));
         
         JPanel MenuRestaurant = new JPanel();
         MenuRestaurant.add(frame);

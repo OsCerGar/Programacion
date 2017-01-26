@@ -33,6 +33,10 @@ public class MenuPrincipalVista extends JFrame  {
     */ 
     
     public MenuPrincipalVista() {
+        
+        frame = new JFrame("Menú Principal");
+        frame.setLayout(new GridLayout(0,1));
+        
         setSize(amplada, alcada); //Li assignem mides a la finestra
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
