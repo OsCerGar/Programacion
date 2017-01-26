@@ -2,7 +2,7 @@ package vista;
 
 import javax.swing.*;
 
-public class MenuRestaurantVista {
+public class MenuRestaurantVista extends JFrame{
 
     private JFrame frame;
 
@@ -29,6 +29,34 @@ public class MenuRestaurantVista {
         
     */
     public MenuRestaurantVista() {
+        
+        JPanel MenuRestaurant = new JPanel();
+        MenuRestaurant.add(frame);
+        
+       
+        menuButtons[0] = new JButton("Sortir");
+        menuButtons[1] = new JButton("Alta");
+        menuButtons[2] = new JButton("Seleccionar restaurant");
+
+        menuButtons[3] = new JButton("Modificar restaurant");
+        menuButtons[4] = new JButton("Llistar restaurants");
+        menuButtons[5] = new JButton("Carregar restaurant");
+        menuButtons[6] = new JButton("Desar restaurant");
+
+        MenuRestaurant.add(menuButtons[0]);
+        MenuRestaurant.add(menuButtons[1]);
+        MenuRestaurant.add(menuButtons[2]);
+        MenuRestaurant.add(menuButtons[3]);
+        MenuRestaurant.add(menuButtons[4]);
+        MenuRestaurant.add(menuButtons[5]);
+        MenuRestaurant.add(menuButtons[6]);
+
+        setSize(amplada, alcada); //Li assignem mides a la finestra
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        add(MenuRestaurant);
+
+        setVisible(true);
 
     }
 

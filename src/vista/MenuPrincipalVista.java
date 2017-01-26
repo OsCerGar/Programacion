@@ -37,13 +37,14 @@ public class MenuPrincipalVista extends JFrame  {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel MenuPrincipal = new JPanel();
+        
         MenuPrincipal.add(frame);
         
         
        
-        menuButtons[1] = new JButton("Sortir");
-        menuButtons[2] = new JButton("Gestió de restaurants");
-        menuButtons[3] = new JButton("Gestió de reserves");
+        menuButtons[0] = new JButton("Sortir");
+        menuButtons[1] = new JButton("Gestió de restaurants");
+        menuButtons[2] = new JButton("Gestió de reserves");
         
         GridLayout taulaPanells = new GridLayout(3, 1, 5, 5);
         //Creem el gestor de la distribució dels panells de la calculadora
