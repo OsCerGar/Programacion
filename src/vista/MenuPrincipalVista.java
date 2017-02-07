@@ -54,9 +54,9 @@ public class MenuPrincipalVista extends JFrame  {
         //Creem el gestor de la distribució dels panells de la calculadora
         setLayout(taulaPanells);
         
+        MenuPrincipal.add(menuButtons[0]);
         MenuPrincipal.add(menuButtons[1]);
         MenuPrincipal.add(menuButtons[2]);
-        MenuPrincipal.add(menuButtons[3]);
         //caracol
         
          

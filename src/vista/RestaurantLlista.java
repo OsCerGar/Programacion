@@ -1,5 +1,6 @@
 package vista;
 
+import java.awt.GridLayout;
 import javax.swing.*;
 
 public class RestaurantLlista {
@@ -24,7 +25,28 @@ public class RestaurantLlista {
        
     */
     public RestaurantLlista() {
-      
+        
+        RestaurantTaula Restaurantt = new RestaurantTaula();
+        
+        JPanel Llistatdebiblioteques = new JPanel();
+
+        frame = new JFrame("Llistatdebiblioteques");
+        frame.setLayout(new GridLayout(0,1));
+
+        taulaRestaurant = new JTable(Restaurantt);
+
+        bSortir = new JButton("Sortir");
+        
+        bSortir.add(taulaRestaurant);
+        taulaRestaurant.add(frame);
+
+        setSize(amplada, alcada); 
+        
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        add(FormulariRestaurant);
+
+        setVisible(true);
     }
 
 
