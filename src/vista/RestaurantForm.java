@@ -1,5 +1,6 @@
 package vista;
 
+import java.awt.GridLayout;
 import javax.swing.*;
 
 public class RestaurantForm extends JFrame{
@@ -31,9 +32,46 @@ public class RestaurantForm extends JFrame{
         
     */
     public RestaurantForm() {
-    
+        
         JPanel FormulariRestaurant = new JPanel();
+
+        frame = new JFrame("Formulari Restaurant");
+        frame.setLayout(new GridLayout(0,1));
+
+        lCodi = new JLabel("Introduce el codigo");
+        lNom = new JLabel("Introduce el nombre");
+        lAdreca = new JLabel("Introduce la direccion");
+        
+        tCodi = new JTextField("",20);
+        tNom = new JTextField("",20);
+        tAdreca = new JTextField("",20);
+
+        bDesar = new JButton("Desar");
+        bSortir = new JButton("Sortir");
+        
         FormulariRestaurant.add(frame);
+                
+        tCodi.add(lCodi);
+        tNom.add(lNom);
+        tAdreca.add(lAdreca);
+        
+        FormulariRestaurant.add(lCodi);
+        
+        lCodi.add(frame);
+        lNom.add(frame);
+        lAdreca.add(frame);
+
+        
+
+        FormulariRestaurant.add(frame);
+
+        setSize(amplada, alcada); 
+        
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        add(FormulariRestaurant);
+
+        setVisible(true);
 
 
     }
