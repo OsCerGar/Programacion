@@ -3,7 +3,7 @@ package vista;
 import java.awt.GridLayout;
 import javax.swing.*;
 
-public class RestaurantLlista {
+public class RestaurantLlista extends JFrame{
 
     private JFrame frame;
     private Integer amplada = 600;
@@ -44,7 +44,7 @@ public class RestaurantLlista {
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        add(FormulariRestaurant);
+        add(Llistatdebiblioteques);
 
         setVisible(true);
     }

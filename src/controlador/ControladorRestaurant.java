@@ -22,7 +22,8 @@ public class ControladorRestaurant implements ActionListener {
         Es crida a afegirListenersMenu
     */
     public ControladorRestaurant() {
-      
+      MenuRestaurantVista menuRestaurantVista = new MenuRestaurantVista();
+      afegirListenersMenu();
     }
 
     /*  Paràmetres: cap
@@ -33,6 +34,11 @@ public class ControladorRestaurant implements ActionListener {
         Retorn: cap
     */
     private void afegirListenersMenu() {
+        JButton[] botones  = new JButton[7];
+        botones = MenuRestaurantVista.getMenuButtons();
+        MenuRestaurantVista.getMenuButtons().addActionListener(this); 
+
+        // hay que hacer el add action listener a todos.
 
     }
 
@@ -44,7 +50,10 @@ public class ControladorRestaurant implements ActionListener {
         Retorn: cap
     */
     private void afegirListenersForm() {
-      
+        RestaurantForm.getDesar().addActionListener(this);
+        RestaurantForm.getSortir().addActionListener(this);
+
+        
     }
 
     /*  Paràmetres: cap

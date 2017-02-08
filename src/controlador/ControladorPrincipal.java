@@ -1,5 +1,6 @@
 package controlador;
 
+import java.awt.GridLayout;
 import persistencia.GestorPersistencia;
 import java.awt.event.*;
 import javax.swing.*;
@@ -24,6 +25,13 @@ public class ControladorPrincipal implements ActionListener {
     */
     public ControladorPrincipal() {
 
+        MenuPrincipalVista menuPrincipalVista = new MenuPrincipalVista();
+        
+        frame = new JFrame("Llistatdebiblioteques");
+        frame.setLayout(new GridLayout(0,1));
+
+        
+        
     }
 
     /*  Paràmetres: ActionEvent
