@@ -57,7 +57,11 @@ public class MenuPrincipalVista extends JFrame  {
         MenuPrincipal.add(menuButtons[0]);
         MenuPrincipal.add(menuButtons[1]);
         MenuPrincipal.add(menuButtons[2]);
+<<<<<<< HEAD
+        MenuPrincipal.add(menuButtons[3]);
+=======
         //caracol
+>>>>>>> 87c77b6dbc60fbcf3117600bbdb24dee851a490b
         
          
         add(MenuPrincipal);
