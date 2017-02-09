@@ -28,8 +28,6 @@ public class RestaurantLlista extends JFrame{
         
         RestaurantTaula Restaurantt = new RestaurantTaula();
         
-        JPanel Llistatdebiblioteques = new JPanel();
-
         frame = new JFrame("Llistatdebiblioteques");
         frame.setLayout(new GridLayout(0,1));
 
@@ -37,16 +35,14 @@ public class RestaurantLlista extends JFrame{
 
         bSortir = new JButton("Sortir");
         
-        bSortir.add(taulaRestaurant);
-        taulaRestaurant.add(frame);
+        frame.add(taulaRestaurant);
+        frame.add(bSortir);
 
-        setSize(amplada, alcada); 
+        frame.setSize(amplada, alcada); 
         
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        add(Llistatdebiblioteques);
-
-        setVisible(true);
+        frame.setVisible(true);
     }
 
 

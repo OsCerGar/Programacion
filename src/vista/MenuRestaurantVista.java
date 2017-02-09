@@ -33,10 +33,6 @@ public class MenuRestaurantVista extends JFrame{
         
         frame = new JFrame("Menú RESTAURANT");
         frame.setLayout(new GridLayout(0,1));
-        
-        JPanel MenuRestaurant = new JPanel();
-        MenuRestaurant.add(frame);
-        
        
         menuButtons[0] = new JButton("Sortir");
         menuButtons[1] = new JButton("Alta");
@@ -47,19 +43,16 @@ public class MenuRestaurantVista extends JFrame{
         menuButtons[5] = new JButton("Carregar restaurant");
         menuButtons[6] = new JButton("Desar restaurant");
 
-        MenuRestaurant.add(menuButtons[0]);
-        MenuRestaurant.add(menuButtons[1]);
-        MenuRestaurant.add(menuButtons[2]);
-        MenuRestaurant.add(menuButtons[3]);
-        MenuRestaurant.add(menuButtons[4]);
-        MenuRestaurant.add(menuButtons[5]);
-        MenuRestaurant.add(menuButtons[6]);
+        frame.add(menuButtons[0]);
+        frame.add(menuButtons[1]);
+        frame.add(menuButtons[2]);
+        frame.add(menuButtons[3]);
+        frame.add(menuButtons[4]);
+        frame.add(menuButtons[5]);
+        frame.add(menuButtons[6]);
 
         setSize(amplada, alcada); //Li assignem mides a la finestra
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        add(MenuRestaurant);
-
         setVisible(true);
 
     }

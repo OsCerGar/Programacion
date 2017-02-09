@@ -37,35 +37,22 @@ public class MenuPrincipalVista extends JFrame  {
         frame = new JFrame("Menú Principal");
         frame.setLayout(new GridLayout(0,1));
         
-        setSize(amplada, alcada); //Li assignem mides a la finestra
-
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JPanel MenuPrincipal = new JPanel();
-        
-        MenuPrincipal.add(frame);
-        
-        
+         //Li assignem mides a la finestra
        
         menuButtons[0] = new JButton("Sortir");
         menuButtons[1] = new JButton("Gestió de restaurants");
         menuButtons[2] = new JButton("Gestió de reserves");
         
-        GridLayout taulaPanells = new GridLayout(3, 1, 5, 5);
         //Creem el gestor de la distribució dels panells de la calculadora
-        setLayout(taulaPanells);
         
-        MenuPrincipal.add(menuButtons[0]);
-        MenuPrincipal.add(menuButtons[1]);
-        MenuPrincipal.add(menuButtons[2]);
-<<<<<<< HEAD
-        MenuPrincipal.add(menuButtons[3]);
-=======
-        //caracol
->>>>>>> 87c77b6dbc60fbcf3117600bbdb24dee851a490b
+        frame.add(menuButtons[0]);
+        frame.add(menuButtons[1]);
+        frame.add(menuButtons[2]);
         
-         
-        add(MenuPrincipal);
-        setVisible(true);
+        frame.setSize(amplada, alcada);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        frame.setVisible(true);
         
     }
     

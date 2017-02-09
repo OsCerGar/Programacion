@@ -33,8 +33,6 @@ public class RestaurantForm extends JFrame{
     */
     public RestaurantForm() {
         
-        JPanel FormulariRestaurant = new JPanel();
-
         frame = new JFrame("Formulari Restaurant");
         frame.setLayout(new GridLayout(0,1));
 
@@ -49,29 +47,26 @@ public class RestaurantForm extends JFrame{
         bDesar = new JButton("Desar");
         bSortir = new JButton("Sortir");
         
-        FormulariRestaurant.add(frame);
-                
-        tCodi.add(lCodi);
-        tNom.add(lNom);
-        tAdreca.add(lAdreca);
-        
-        FormulariRestaurant.add(lCodi);
-        
-        lCodi.add(frame);
-        lNom.add(frame);
-        lAdreca.add(frame);
+        frame.add(lCodi);
+        frame.add(tCodi);
 
-        
+        frame.add(lNom);
+        frame.add(tNom);
 
-        FormulariRestaurant.add(frame);
-
-        setSize(amplada, alcada); 
+        frame.add(lAdreca);
+        frame.add(tAdreca);
         
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        add(FormulariRestaurant);
+        frame.add(lAdreca);
 
-        setVisible(true);
+
+        frame.add(bDesar);
+        frame.add(bSortir);
+
+        frame.setSize(amplada, alcada); 
+        
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        frame.setVisible(true);
 
 
     }
