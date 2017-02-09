@@ -24,6 +24,7 @@ public class ControladorRestaurant implements ActionListener {
     */
     public ControladorRestaurant() {
       MenuRestaurantVista menuRestaurantVista = new MenuRestaurantVista();
+
       afegirListenersMenu();
     }
 
@@ -34,13 +35,15 @@ public class ControladorRestaurant implements ActionListener {
         
         Retorn: cap
     */
-    private void afegirListenersMenu() {
-        JButton[] botones  = new JButton[7];
-        botones = MenuRestaurantVista.getMenuButtons();
-        MenuRestaurantVista.getMenuButtons().addActionListener(this); 
-
-        // hay que hacer el add action listener a todos.
-
+    private void afegirListenersMenu() {        
+        
+        menuRestaurantVista.getMenuButtons()[0].addActionListener(this);
+        menuRestaurantVista.getMenuButtons()[1].addActionListener(this);
+        menuRestaurantVista.getMenuButtons()[2].addActionListener(this);
+        menuRestaurantVista.getMenuButtons()[3].addActionListener(this);
+        menuRestaurantVista.getMenuButtons()[4].addActionListener(this);
+        menuRestaurantVista.getMenuButtons()[5].addActionListener(this);
+        menuRestaurantVista.getMenuButtons()[6].addActionListener(this);
     }
 
     /*  Paràmetres: cap
@@ -51,9 +54,9 @@ public class ControladorRestaurant implements ActionListener {
         Retorn: cap
     */
     private void afegirListenersForm() {
-        RestaurantForm.getDesar().addActionListener(this);
-        RestaurantForm.getSortir().addActionListener(this);
-
+        
+        restaurantForm.getSortir().addActionListener(this);
+        restaurantForm.getDesar().addActionListener(this);
         
     }
 
@@ -65,7 +68,9 @@ public class ControladorRestaurant implements ActionListener {
         Retorn: cap
     */
     private void afegirListenersLlista() {
-      
+        
+        restaurantLlista.getSortir().addActionListener(this);
+        
     }
 
     /*
@@ -119,7 +124,33 @@ public class ControladorRestaurant implements ActionListener {
     */ 
     public void actionPerformed(ActionEvent e) {
         
+        Object gestorEsdeveniments = e.getSource();
 
+        if (gestorEsdeveniments == menuRestaurantVista.getMenuButtons()[0]) {
+            bifurcaOpcio(0);
+        } 
+        else if (gestorEsdeveniments == menuRestaurantVista.getMenuButtons()[1]) {
+            bifurcaOpcio(1);
+        } 
+        else if (gestorEsdeveniments == menuRestaurantVista.getMenuButtons()[2]) {
+            bifurcaOpcio(2);
+        }
+        else if (gestorEsdeveniments == menuRestaurantVista.getMenuButtons()[3]) {
+            bifurcaOpcio(3);
+        }
+        else if (gestorEsdeveniments == menuRestaurantVista.getMenuButtons()[4]) {
+            bifurcaOpcio(4);
+        }
+        else if (gestorEsdeveniments == menuRestaurantVista.getMenuButtons()[5]) {
+            bifurcaOpcio(5);
+        }
+        else if (gestorEsdeveniments == menuRestaurantVista.getMenuButtons()[6]) {
+            bifurcaOpcio(6);
+        }
+        
+        if (gestorEsdeveniments == restaurantForm.getDesar()) {
+            
+        }
     }
 
     private void bifurcaOpcio(int opcio) {

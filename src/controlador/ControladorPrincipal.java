@@ -27,10 +27,10 @@ public class ControladorPrincipal implements ActionListener {
 
         MenuPrincipalVista menuPrincipalVista = new MenuPrincipalVista();
         
-        frame = new JFrame("Llistatdebiblioteques");
-        frame.setLayout(new GridLayout(0,1));
+        menuPrincipalVista.getMenuButtons()[0].addActionListener(this);
+        menuPrincipalVista.getMenuButtons()[1].addActionListener(this);
+        menuPrincipalVista.getMenuButtons()[2].addActionListener(this);
 
-        
         
     }
 
@@ -42,7 +42,20 @@ public class ControladorPrincipal implements ActionListener {
         Retorn: cap
     */
     public void actionPerformed(ActionEvent e) {
-
+        
+        Object gestorEsdeveniments = e.getSource();
+        
+        if (gestorEsdeveniments == menuPrincipalVista.getMenuButtons()[0]){
+            bifurcaOpcio(0);
+        }
+        else if(gestorEsdeveniments == menuPrincipalVista.getMenuButtons()[1]){
+            bifurcaOpcio(1);
+        }
+        
+        else if (gestorEsdeveniments == menuPrincipalVista.getMenuButtons()[2]) {
+            bifurcaOpcio(2);
+        }
+      
     }
 
     private void bifurcaOpcio(int opcio) {
