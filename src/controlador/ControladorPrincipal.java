@@ -11,7 +11,7 @@ public class ControladorPrincipal implements ActionListener {
 
     static private MenuPrincipalVista menuPrincipalVista;
     static private final Integer MAXRESTAURANTS = 10;
-    static private Restaurant[] restaurants = new Restaurant[MAXRESTAURANTS];
+    static public Restaurant[] restaurants = new Restaurant[MAXRESTAURANTS];
     static private int properRestaurant = 0;
     static private Restaurant restaurantActual = null;
     static private int tipusElement = 0;

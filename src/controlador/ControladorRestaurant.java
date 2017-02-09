@@ -1,13 +1,16 @@
 package controlador;
 
 import java.awt.event.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import model.Restaurant;
 import vista.MenuRestaurantVista;
 import vista.RestaurantForm;
 import vista.RestaurantLlista;
 import vista.MenuPrincipalVista;
-
+import persistencia.GestorXML;
+import principal.RestaurantExcepcio;
 
 
 public class ControladorRestaurant implements ActionListener {
@@ -16,8 +19,8 @@ public class ControladorRestaurant implements ActionListener {
     private RestaurantForm restaurantForm = null;
     private RestaurantLlista restaurantLlista = null;
     private int opcioSeleccionada = 0;
-
-    
+    private String codigo;
+    private Restaurant nouRestaurant;
     /*  
         S'inicialitza l'atribut menuRestaurantVista (això mostrarà el menú principal)
         Es crida a afegirListenersMenu
@@ -131,12 +134,15 @@ public class ControladorRestaurant implements ActionListener {
         } 
         else if (gestorEsdeveniments == menuRestaurantVista.getMenuButtons()[1]) {
             bifurcaOpcio(1);
+            opcioSeleccionada = 1;
         } 
         else if (gestorEsdeveniments == menuRestaurantVista.getMenuButtons()[2]) {
             bifurcaOpcio(2);
         }
         else if (gestorEsdeveniments == menuRestaurantVista.getMenuButtons()[3]) {
             bifurcaOpcio(3);
+            opcioSeleccionada = 3;
+
         }
         else if (gestorEsdeveniments == menuRestaurantVista.getMenuButtons()[4]) {
             bifurcaOpcio(4);
@@ -220,7 +226,46 @@ public class ControladorRestaurant implements ActionListener {
              Si es produeix alguna excepció al carregar el fitxer, en la captura s'ha de mostrar el missatge corresponent de la classe RestaurantExcepcio
              mitjançant JOptionPane.showMessageDialog
             */
+            JOptionPane mensaje = new JOptionPane(); 
+            
+                Object[] options = {"XML"};
+                int n = JOptionPane.showOptionDialog(null,
+                        "Cargar XML ", "XML",
+                        JOptionPane.PLAIN_MESSAGE,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        options,
+                        options[0]);
+
+                
+                if (n == 0){
+                    codigo = JOptionPane.showInputDialog(null, "Introducir l'edat : ", "Edat Alumne", JOptionPane.QUESTION_MESSAGE);
+                }
+                
+                GestorXML gestor = new GestorXML();
+        
+                try {
+                    nouRestaurant = gestor.carregaRestaurant(codigo);
+                } catch (RestaurantExcepcio ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "¡¡WARNING!!", JOptionPane.INFORMATION_MESSAGE);
+                    Logger.getLogger(ControladorRestaurant.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                int index2 = comprovarRestaurant(Integer.parseInt(codigo));
+
+                if (index2 > 0) {
+                    int respuesta = JOptionPane.showOptionDialog(null, "Elige una opcion", "Menu", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Aceptar", "Cancelar"}, null);
+                    if (respuesta == 1) {
+                        break;
+                    } else {
+                        ControladorPrincipal.restaurants[index2] = nouRestaurant;
+                    }
+                } else {
+                    ControladorPrincipal.restaurants[ControladorPrincipal.getComptaRestaurants()] = nouRestaurant;
+                    JOptionPane.showMessageDialog(null, "Restaurant Afegit", "¡¡WARNING!!", JOptionPane.INFORMATION_MESSAGE);
+                }
                 break;
+
             case 6: //desar
             /*
              Es comprova si s'ha seleccionat el restaurant, és a dir, si el restaurant és l'actual. Si no ho és mostrarà un missatge indicat que abans s'ha de seleccionar (JOptionPane.showMessageDialog)
@@ -292,5 +337,4 @@ public class ControladorRestaurant implements ActionListener {
 
         return retorna;
     }
-
 }
